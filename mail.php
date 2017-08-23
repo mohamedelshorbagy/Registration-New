@@ -9,7 +9,7 @@ $db = getDB();
 
 // Get All Mails 
 
-$stmt = $db->prepare('SELECT id, email, random FROM  test WHERE status="Visitor" LIMIT 0 , 30');
+$stmt = $db->prepare('SELECT id,name , email, random FROM  test WHERE status="Visitor" LIMIT 0 , 30');
 
 
 $stmt->execute();
@@ -78,3 +78,84 @@ print_r($result);
 
 
 ?>
+
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="https://bootswatch.com/readable/bootstrap.min.css" />
+        <style>
+            body {
+                background-color: #EEE;
+
+            }
+            .main-table thead{
+                background-color: #222;
+
+            }
+            .main-table thead th {
+                color: #FFF;
+
+            }
+            .main-table tbody {
+                background-color: #FFF;
+
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="text-center">Information</h1>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <table class="text-center table table-bordered table-responsive main-table">
+                        <thead>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Random</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                                <?php  if(isset($result)) {
+                                		foreach($result as $single) {
+
+                                 ?>
+                                    <td><?php echo $single['id']; ?> </td>
+                                    <td><?php echo $single['name']; ?></td>
+                                    <td><?php echo $single['email']; ?></td>
+                                    <td><?php echo $single['random']; ?></td>
+                             
+                                
+
+                            </tr>
+                        </tbody>
+
+
+                    </table>
+       
+
+
+
+<?php }
+
+
+  }?>
+                  
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        
+    </body>
+
+
+
+
+</html>
